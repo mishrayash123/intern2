@@ -1,7 +1,12 @@
 require('dotenv').config();
 const dbConnection = require('./config/database');
+const express = require('./config/express');
 
 const app = require('express')();
+
+if(process.env.NODE_ENV== "production"){
+    app.use(express.static("client/build"));
+}
 
 dbConnection().then(() => {
 
